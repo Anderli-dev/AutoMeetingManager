@@ -1,6 +1,6 @@
 # AutoMeetingManager
 
-AutoMeetingManager is a Python script, for my education, that automates joining and exiting Google Classroom meetings based on a schedule. It uses `pyautogui` to handle mouse and keyboard actions and `schedule` for task scheduling.
+AutoMeetingManager is a Python script, for my education, that automates joining and exiting Google Classroom meetings based on a schedule.This program is specifically designed to ensure automatic attendance at classes when I am at work and cannot join the sessions manually. It uses `pyautogui` to handle mouse and keyboard actions and `schedule` for task scheduling.
 
 ## Features
 
@@ -18,4 +18,4 @@ AutoMeetingManager is a Python script, for my education, that automates joining 
 
 Install the required libraries via pip:
 ```bash
-pip install pyautogui schedule
+pip install requirements.txt
