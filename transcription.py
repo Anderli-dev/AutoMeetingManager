@@ -22,5 +22,5 @@ def audio_transcription(audio_filenames: list):
         with open(f"{filename} transcription.txt", "w", encoding="utf-8") as file:
             # Write each segment's start time, end time, and text to the file
             for segment in segments:
-                line = "[%.2fs -> %.2fs] %s \n" % (segment.start, segment.end, segment.text)
+                line = segment.text + " \n"
                 file.write(line)
