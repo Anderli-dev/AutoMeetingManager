@@ -2,18 +2,19 @@ import os
 import time
 from datetime import datetime, timedelta
 
-from MeetingHandler import MeetingHandler
-from get_filenames import get_filenames
-from make_audio import make_audio
-from transcription import audio_transcription
+from src.meeting_handler.meeting import MeetingHandler
+from src.utils.get_filenames import get_filenames
+from src.utils.audio_converter import audio_converter
+from src.transcription.transcribe import audio_transcription
 
-if __name__ == "__main__":
+
+def main():
     # Initialize the meeting handler
     meeting_handler = MeetingHandler()
 
     # Schedule the join and quit functions for the meeting at specific times
     # TODO: Extend functionality for scheduling across multiple days
-    meeting_handler.create_meeting_session("08:05", "09:35")
+    meeting_handler.create_meeting_session("09:45", "10:00")
 
     # Main loop to execute scheduled tasks and handle meeting lifecycle
     try:
@@ -36,7 +37,7 @@ if __name__ == "__main__":
         today_videos_filenames = get_filenames()
 
         # Convert recorded video files into audio files
-        make_audio(today_videos_filenames)
+        audio_converter(today_videos_filenames)
 
         # Perform transcription on the generated audio files
         audio_transcription(today_videos_filenames)

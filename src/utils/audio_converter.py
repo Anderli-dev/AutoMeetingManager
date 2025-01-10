@@ -1,13 +1,14 @@
 from moviepy.editor import VideoFileClip
+from configs import config
 
 
-def make_audio(video_filenames: list):
+def audio_converter(video_filenames: list):
     # Iterate over each video file in the list to convert to audio
     for vf in video_filenames:
         # Define the path to the video file and the output path for the audio file
         path_to_video_file = f"C:/Users/lolke/Videos/OBS/{vf[0]}"
         filename = vf[0].split(".")[0]  # Extract the filename without extension
-        path_to_audio_file = f"audiofiles/{filename}.mp3"  # Set the output path for the audio file
+        path_to_audio_file = f"{config.BASE_DIR}/data/audiofiles/{filename}.mp3"  # Set the output path for the audio file
 
         # Load the video clip from the specified file
         video_clip = VideoFileClip(path_to_video_file)

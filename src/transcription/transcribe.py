@@ -1,4 +1,5 @@
 from faster_whisper import WhisperModel
+from configs import config
 
 # Specify the model size for Whisper (large-v3) and set it to run on GPU with FP16 precision
 model_size = "large-v3"
@@ -16,10 +17,10 @@ def audio_transcription(audio_filenames: list):
         print(f"Transcription of {filename}")
 
         # Transcribe the audio file with specified beam size and language set to Ukrainian ("uk")
-        segments, info = model.transcribe(f"audiofiles/{filename}.mp3", beam_size=5, language="uk")
+        segments, info = model.transcribe(f"{config.BASE_DIR}/data/audiofiles/{filename}.mp3", beam_size=5, language="uk")
 
         # Open a new text file for saving the transcription results
-        with open(f"{filename} transcription.txt", "w", encoding="utf-8") as file:
+        with open(f"{config.BASE_DIR}/data/transcriptions/{filename} transcription.txt", "w", encoding="utf-8") as file:
             # Write each segment's start time, end time, and text to the file
             for segment in segments:
                 line = segment.text + " \n"
