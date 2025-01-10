@@ -1,24 +1,24 @@
 project_root/
-├── README.md                # Опис проєкту, залежності, інструкції
-├── requirements.txt         # Список бібліотек Python для установки
-├── start.py                 # Головний скрипт для запуску проєкту
-├── src/                     # Основний код проєкту
-│   ├── __init__.py          # Індикатор Python-пакета
+├── README.md                # Project description, dependencies, instructions
+├── requirements.txt         # List of Python libraries for installation
+├── start.py                 # Main script to run the project
+├── src/                     # Main project code
+│   ├── __init__.py          # Indicator of a Python package
 │   ├── meeting_handler/
 │   │   ├── __init__.py
-│   │   ├── meeting.py       # Клас для обробки зустрічей
+│   │   ├── meeting.py       # Class for handling meetings
 │   ├── transcription/
 │   │   ├── __init__.py
-│   │   ├── transcribe.py    # Логіка транскрибування
+│   │   ├── transcribe.py    # Transcription logic
 │   ├── utils/
 │   │   ├── __init__.py
-│   │   ├── get_filenames.py               # Логіка для отримання файлів
-│   │   ├── ensure_directories_exist.py    # Логіка для отримання файлів
-│   │   ├── audio_converter.py             # Конвертація відео у аудіо
-├── data/                    # Папка для аудіо, відео, транскриптів
-│   ├── audiofiles/          # Аудіофайли
-│   ├── transcriptions/      # Транскрипти
-├── scripts/                 # Скрипти для автоматизації
-│   ├── main.py              # Скрипт для старту програми
-├── configs/                 # Конфігураційні файли
-│   ├── config.py            # Налаштування програми
+│   │   ├── get_filenames.py               # Logic for retrieving files
+│   │   ├── ensure_directories_exist.py    # Logic for ensuring directories exist
+│   │   ├── audio_converter.py             # Conversion of video to audio
+├── data/                    # Folder for audio, video, transcriptions
+│   ├── audiofiles/          # Audio files
+│   ├── transcriptions/      # Transcriptions
+├── scripts/                 # Automation scripts
+│   ├── main.py              # Script to start the program
+├── configs/                 # Configuration files
+│   ├── config.py            # Program settings
