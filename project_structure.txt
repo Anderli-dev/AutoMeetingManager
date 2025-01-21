@@ -4,9 +4,15 @@ project_root/
 ├── start.py                 # Main script to run the project
 ├── src/                     # Main project code
 │   ├── __init__.py          # Indicator of a Python package
+│   ├── conversation/
+│   │   ├── __init__.py
+│   │   ├── conversation.py  # Class for handling conversation
 │   ├── meeting_handler/
 │   │   ├── __init__.py
 │   │   ├── meeting.py       # Class for handling meetings
+│   ├── realtime_recognizer/
+│   │   ├── __init__.py
+│   │   ├── RealtimeSpeechRecognizer.py    # Class for recognizing speach and transcribe to text in real time
 │   ├── transcription/
 │   │   ├── __init__.py
 │   │   ├── transcribe.py    # Transcription logic

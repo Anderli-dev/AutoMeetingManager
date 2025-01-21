@@ -1,12 +1,12 @@
 from faster_whisper import WhisperModel
 from configs import config
 
-# Specify the model size for Whisper (large-v3) and set it to run on GPU with FP16 precision
-model_size = "large-v3"
-model = WhisperModel(model_size, device="cuda", compute_type="float16")
-
 
 def audio_transcription(audio_filenames: list):
+    # Specify the model size for Whisper (large-v3) and set it to run on GPU with FP16 precision
+    model_size = "large-v3"
+    model = WhisperModel(model_size, device="cuda", compute_type="float16")
+
     # Print start message for transcription process
     print("Begin of transcription")
 
