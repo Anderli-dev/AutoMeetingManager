@@ -54,5 +54,6 @@ async def main():
     # Handle manual interruption (e.g., Ctrl+C)
     except KeyboardInterrupt:
         print("\nProgram terminated.")
-        # !!!NOTE!! Exiting asyncio loop may require alternative handling.
-        sys.exit(0)
+
+        # Closing program after using recognizer. Without this wil be infinity loop and program doesn't end
+        del meeting_handler.recognizer.recorder.realtime_model_type

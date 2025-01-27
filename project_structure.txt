@@ -4,6 +4,12 @@ project_root/
 ├── start.py                 # Main script to run the project
 ├── src/                     # Main project code
 │   ├── __init__.py          # Indicator of a Python package
+│   ├── audio_to_text_transcriber/
+│   │   ├── __init__.py
+│   │   ├── audio_to_text_transcriber.py      # My implementation of AudioToTextTranscriber
+│   ├── bot/
+│   │   ├── __init__.py
+│   │   ├── handlers.py      # Bot handlers
 │   ├── conversation/
 │   │   ├── __init__.py
 │   │   ├── conversation.py  # Class for handling conversation
@@ -12,7 +18,7 @@ project_root/
 │   │   ├── meeting.py       # Class for handling meetings
 │   ├── realtime_recognizer/
 │   │   ├── __init__.py
-│   │   ├── RealtimeSpeechRecognizer.py    # Class for recognizing speach and transcribe to text in real time
+│   │   ├── realtime_speech_recognizer.py    # Class for recognizing speach and transcribe to text in real time
 │   ├── transcription/
 │   │   ├── __init__.py
 │   │   ├── transcribe.py    # Transcription logic
@@ -28,3 +34,4 @@ project_root/
 │   ├── main.py              # Script to start the program
 ├── configs/                 # Configuration files
 │   ├── config.py            # Program settings
+│   ├── bot_config.py        # Bot settings

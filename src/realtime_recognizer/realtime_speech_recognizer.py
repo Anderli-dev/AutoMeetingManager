@@ -1,8 +1,11 @@
+import asyncio
 import threading
 
 import schedule
-from RealtimeSTT import AudioToTextRecorder
 from rapidfuzz import process
+
+from src.audio_to_text_transcriber.audio_to_text_transcriber import AudioToTextTranscriber
+from src.bot.handlers import send_message_to_user
 
 
 class WordSearcher:
@@ -22,7 +25,10 @@ class WordSearcher:
             # Filter matches with a similarity score greater than 80%
             for match in matches:
                 if len(match[0]) >= len(search_word) - 1 and match[1] > 80: # Only 80% match, no less
-                    print(f"Found '{search_word}':", match)
+                    asyncio.run(send_message_to_user(f"You have been mentioned.\n"
+                                                     f"Word: {search_word} ({match[0]}).\n"
+                                                     f"Similarity: {match[1]}"
+                                                     f">{sentence}"))
 
 
 class SpeechProcessor:
@@ -32,8 +38,11 @@ class SpeechProcessor:
 
     def text_detected(self, text):
         # Handle incomplete sentences detected during real-time transcription
-        thread = threading.Thread(target=self.searcher.search_in_sentence, args=(text,))
-        thread.start()
+        pass
+        # Code below use only for debug purpose
+        # print(text)
+        # thread = threading.Thread(target=self.searcher.search_in_sentence, args=(text,))
+        # thread.start()
 
     def process_text(self, text):
         # Handle complete and processed sentences
@@ -87,7 +96,7 @@ class RealtimeSpeechRecognizer:
 
     def start_recorder(self):
         print("Recording start")
-        self.recorder = AudioToTextRecorder(**self.recorder_config)
+        self.recorder = AudioToTextTranscriber(**self.recorder_config)
         while True:
             # Process real-time transcription with the provided processor
             self.recorder.text(self.processor.process_text)

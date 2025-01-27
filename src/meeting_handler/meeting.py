@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 import pyautogui
 import schedule
 
-from src.realtime_recognizer.RealtimeSpeechRecognizer import RealtimeSpeechRecognizer
+from src.realtime_recognizer.realtime_speech_recognizer import RealtimeSpeechRecognizer
 from src.conversation.conversation import Conversation
 
 
