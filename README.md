@@ -55,18 +55,24 @@ Follow Telegram’s official [BotFather guide](https://core.telegram.org/bots#bo
 
 ### Prerequisites
 
-1. Open Google Classroom in your browser with the following configuration:
+1. **Set up your audio device**
+
+   - When using the software package, you must configure **VB-CABLE** as an input and output device in the audio mixer.
+   - You also need to change the settings of your audio devices, see the video instructions: [*video link*]
+
+2. **Open Google Classroom in your browser with the following configuration**
 
    - Meeting tabs should be arranged from left (first meeting) to right (last meeting).
    - The last tab should be an empty one (no meeting loaded).
    - **Insert screenshot for clarity**.
 
-2. Launch OBS in full-screen mode and ensure it’s ready for recording.
+3. **Launch OBS in full-screen mode and ensure it’s ready for recording**
 
-3. The last two applications in your `Alt+Tab` switcher should be:
+4. **The last two applications in your `Alt+Tab` switcher should be**
 
    - Browser (for Google Classroom)
    - OBS
+
 
 ### Running the Program
 
