@@ -32,7 +32,6 @@ Follow one of these methods to install cDNN:
 ### 3. Install VB-CABLE Driver Pack
 
 - Download and install VB-CABLE Driver Pack.
-- Configure VB-CABLE as both input and output devices. Use the provided image for guidance (insert **image here**).
 
 ### 4. Hardware Requirements
 
