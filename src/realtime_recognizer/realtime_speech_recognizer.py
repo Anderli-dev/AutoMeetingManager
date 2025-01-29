@@ -6,6 +6,7 @@ from rapidfuzz import process
 
 from src.audio_to_text_transcriber.audio_to_text_transcriber import AudioToTextTranscriber
 from src.bot.handlers import send_message_to_user
+from src.utils.escape_special_characters import escape_special_characters
 
 
 class WordSearcher:
@@ -24,11 +25,11 @@ class WordSearcher:
 
             # Filter matches with a similarity score greater than 80%
             for match in matches:
-                if len(match[0]) >= len(search_word) - 1 and match[1] > 80: # Only 80% match, no less
-                    asyncio.run(send_message_to_user(f"You have been mentioned.\n"
-                                                     f"Word: {search_word} ({match[0]}).\n"
-                                                     f"Similarity: {match[1]}"
-                                                     f">{sentence}"))
+                if len(match[0]) >= len(search_word) - 1 and match[1] > 80:  # Only 80% match, no less
+                    asyncio.run(send_message_to_user(f"You have been mentioned\!\n"
+                                                     f"Word: {search_word} \({escape_special_characters(match[0])}\)\.\n"
+                                                     f"Similarity: {escape_special_characters(str(match[1]))}\.\n"
+                                                     f">{escape_special_characters(sentence)}"))
 
 
 class SpeechProcessor:
@@ -56,7 +57,7 @@ class RealtimeSpeechRecognizer:
         A class for managing real-time speech recognition with keyword searching and transcription.
         """
         # List of keywords to search for in the transcription
-        self.search_words = ["іван", "супрун"]
+        self.search_words = ["іван", "супрун", "танк"]
         self.searcher = WordSearcher(self.search_words)
         self.processor = SpeechProcessor(self.searcher)
         self.schedule = schedule

@@ -62,16 +62,5 @@ class AudioToTextTranscriber(AudioToTextRecorder):
             if self.realtime_thread:
                 self.realtime_thread.join()
 
-            # Clear the real-time transcription model to release memory if enabled
-            if self.enable_realtime_transcription:
-                if self.realtime_model_type:
-                    # The commented code is present in the class that is being used.
-                    # This code terminates the execution of the program.
-
-                    # del self.realtime_model_type
-
-                    logging.debug("Clearing real-time model")
-                    self.realtime_model_type = None
-
             # Perform garbage collection to free up memory
             gc.collect()
