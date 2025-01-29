@@ -57,14 +57,16 @@ Follow Telegram’s official [BotFather guide](https://core.telegram.org/bots#bo
 
 1. **Set up your audio device**
 
-   - When using the software package, you must configure **VB-CABLE** as an input and output device in the audio mixer.
-   - You also need to change the settings of your audio devices, see the video instructions: [*video link*]
+   - When using the software package, you must configure **VB-CABLE** as an input and output device in the audio mixer. Exemple:
+   ![How sound mixer should look like](helpers/imgs/sound_mixer.png)
+   - You also need to change the settings of your audio devices, see the video instructions: [How set up your audio device for AutoMeetingManager](https://youtu.be/YF9fj6e5oAg)
 
 2. **Open Google Classroom in your browser with the following configuration**
 
    - Meeting tabs should be arranged from left (first meeting) to right (last meeting).
    - The last tab should be an empty one (no meeting loaded).
-   - **Insert screenshot for clarity**.
+   - Example:
+   ![How google should look like](helpers/imgs/google.png)
 
 3. **Launch OBS in full-screen mode and ensure it’s ready for recording**
 
@@ -97,10 +99,6 @@ The tool will automatically:
 ## Contribution
 
 Feel free to contribute by submitting issues, suggesting improvements, or creating pull requests.
-
-## License
-
-This project is licensed under the MIT License.
 
 ---
 

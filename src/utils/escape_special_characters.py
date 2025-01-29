@@ -2,8 +2,8 @@ import re
 
 
 def escape_special_characters(input_string):
-    # Визначаємо спеціальні символи
+    # Define special characters
     special_chars = re.escape(r'`~!@#$%^&*()-_=+[{]}\\|;:\'\",<.>/?')
-    # Шукаємо спеціальні символи та додаємо перед ними "\\"
+    # Look for special characters and add before them "\"
     escaped_string = re.sub(f"([{special_chars}])", r"\\\1", input_string)
     return escaped_string
