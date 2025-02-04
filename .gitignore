@@ -85,3 +85,13 @@ fabric.properties
 /.idea/inspectionProfiles/Project_Default.xml
 /.idea/vcs.xml
 /.idea/git_toolbox_prj.xml
+
+
+data/audiofiles/*
+!data/audiofiles/
+!data/audiofiles/.gitkeep
+data/transcriptions/*
+!data/transcriptions/
+!data/transcriptions/.gitkeep
+
+**/__pycache__/**
