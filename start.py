@@ -11,7 +11,7 @@ if __name__ == "__main__":
         ensure_directories_exist()
 
         # Initiates the main asynchronous function to execute the core workflow of the program.
-        asyncio.run(main())
+        main()
     except Exception as e:
         # Handles any exceptions that may arise during the program's execution.
         # Prints the error details to the console for debugging purposes.

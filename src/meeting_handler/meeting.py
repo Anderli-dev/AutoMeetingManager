@@ -1,30 +1,12 @@
-import asyncio
 import time
-from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta
 
 import pyautogui
 import schedule
 
-from src.realtime_recognizer.realtime_speech_recognizer import RealtimeSpeechRecognizer
 from src.conversation.conversation import Conversation
-
-
-async def async_wrapper(func):
-    """
-    Wraps a synchronous function to execute it in an asynchronous loop.
-    Utilizes a thread pool to ensure compatibility with asyncio.
-    """
-    loop = asyncio.get_running_loop()
-    with ThreadPoolExecutor() as thread_executor:
-        return await loop.run_in_executor(thread_executor, func)
-
-
-def create_async_task(task):
-    """
-    Creates and runs an asynchronous task for non-blocking execution.
-    """
-    asyncio.create_task(async_wrapper(task))
+from src.realtime_recognizer.realtime_speech_recognizer import \
+    RealtimeSpeechRecognizer
 
 
 class MeetingHandler:
@@ -54,7 +36,7 @@ class MeetingHandler:
         pyautogui.hotkey('alt', 'tab')
         time.sleep(0.5)
 
-    async def create_meeting_session(self, start_time: str, end_time: str):
+    def create_meeting_session(self, start_time: str, end_time: str):
         """
         Asynchronously schedules tasks for managing a meeting session.
 
@@ -76,11 +58,11 @@ class MeetingHandler:
 
         # Schedule joining the conversation 5 minutes after the start time
         self.schedule.every().day.at(
-            (datetime.strptime(start_time, "%H:%M") + timedelta(minutes=5)).strftime("%H:%M")
-        ).do(create_async_task, self.conversation.join)
+            (datetime.strptime(start_time, "%H:%M") + timedelta(minutes=1)).strftime("%H:%M")
+        ).do(self.conversation.join)
 
         # Schedule quitting the conversation at the specified end time
-        self.schedule.every().day.at(end_time).do(create_async_task, self.conversation.quit)
+        self.schedule.every().day.at(end_time).do(self.conversation.quit)
 
         # Schedule stopping the recording 5 minutes after the end time
         self.schedule.every().day.at(
