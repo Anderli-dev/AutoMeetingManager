@@ -10,7 +10,7 @@ def ensure_directories_exist():
     """
 
     # List of directories to check/create, relative to the base directory
-    directories = ["data/audiofiles", "data/transcriptions"]
+    directories = ["data/audiofiles", "data/videofiles", "data/transcriptions"]
 
     # Iterate through the list of directories
     for directory in directories:

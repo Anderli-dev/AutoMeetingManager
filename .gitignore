@@ -93,5 +93,8 @@ data/audiofiles/*
 data/transcriptions/*
 !data/transcriptions/
 !data/transcriptions/.gitkeep
+data/videofiles/*
+!data/videofiles/
+!data/videofiles/.gitkeep
 
 **/__pycache__/**
