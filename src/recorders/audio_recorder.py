@@ -4,13 +4,16 @@ import wave
 import numpy as np
 import sounddevice as sd
 
+from configs import config
+from src.utils import create_filenames
+
 
 class AudioRecorder:
     def __init__(self):
         self.audio_frames = []
         self.sample_rate = 44100
         self.chanels = 2
-        self.AUDIO_FILENAME = "audio_record.wav"
+        self.AUDIO_PATH = f"{config.BASE_DIR}/data/transcriptions/{create_filenames()}.wav"
         self.is_recording = True
         
     def _callback(self, indata, frames, time, status):
@@ -27,7 +30,7 @@ class AudioRecorder:
                 
     def save_audio(self):
         """Збереження аудіо у файл"""
-        wf = wave.open(self.AUDIO_FILENAME, "wb")
+        wf = wave.open(self.AUDIO_PATH, "wb")
         wf.setnchannels(self.chanels)
         wf.setsampwidth(2)  # 16-бітне аудіо
         wf.setframerate(self.sample_rate)
