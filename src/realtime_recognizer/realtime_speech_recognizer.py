@@ -26,10 +26,17 @@ class WordSearcher:
             # Filter matches with a similarity score greater than 80%
             for match in matches:
                 if len(match[0]) >= len(search_word) - 1 and match[1] > 80:  # Only 80% match, no less
-                    asyncio.run(send_message_to_user(f"You have been mentioned\!\n"
-                                                     f"Word: {search_word} \({escape_special_characters(match[0])}\)\.\n"
-                                                     f"Similarity: {escape_special_characters(str(match[1]))}\.\n"
-                                                     f">{escape_special_characters(sentence)}"))
+                    word = escape_special_characters(match[0])
+                    similarity = escape_special_characters(str(match[1]))
+                    sentence = escape_special_characters(sentence)
+                    
+                    asyncio.run(
+                        send_message_to_user(
+                            f"You have been mentioned\!\n"
+                            f"Word: {search_word} \({word}\)\.\n"
+                            f"Similarity: {similarity}\.\n"
+                            f">{sentence}")
+                        )
 
 
 class SpeechProcessor:
