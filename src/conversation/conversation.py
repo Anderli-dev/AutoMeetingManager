@@ -10,7 +10,7 @@ class Conversation:
             A class for handling conversation join and quit operations, integrated with speech recognition.
         """
         self.recognizer = recognizer
-        self.recording = threading.Thread(target=self.recognizer.start_recorder)
+        self.recording = None
 
     # Function to handle mouse manipulations for joining a conversation
     def join(self):
@@ -43,14 +43,19 @@ class Conversation:
         time.sleep(0.5)
 
         # Start the speech recognition recorder in a separate thread
-        # Note: "recording" is a Thread class.
+        # Each time a Thread must be created and closed manually
+        # NOTE: multiprocessing does not work due to the nature of RSTT
+        self.recording = threading.Thread(target=self.recognizer.start_recorder)
         self.recording.start()
 
     # Function to quit the conversation
     def quit(self):
         # Stop the speech recognition recorder
         self.recognizer.shutdown()
+        
+        # Closing a thread
         self.recording.join()
+        self.recording = None
 
         # Close the current tab to exit the conversation
         pyautogui.hotkey('ctrl', 'f4')

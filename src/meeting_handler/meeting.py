@@ -58,7 +58,7 @@ class MeetingHandler:
 
         # Schedule joining the conversation 5 minutes after the start time
         self.schedule.every().day.at(
-            (datetime.strptime(start_time, "%H:%M") + timedelta(minutes=1)).strftime("%H:%M")
+            (datetime.strptime(start_time, "%H:%M") + timedelta(minutes=5)).strftime("%H:%M")
         ).do(self.conversation.join)
 
         # Schedule quitting the conversation at the specified end time

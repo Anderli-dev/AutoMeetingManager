@@ -1,7 +1,7 @@
 import os
+import time
 from datetime import datetime, timedelta
 from typing import NoReturn
-import time
 
 from src.meeting_handler.meeting import MeetingHandler
 from src.transcription.transcribe import audio_transcription
@@ -32,12 +32,7 @@ def main() -> NoReturn:
 
     # Schedule a sample meeting session (start and end times dynamically adjusted for testing)
     # TODO: Add functionality to manage multi-day scheduling for meetings.
-    # meeting_handler.create_meeting_session("13:10", "13:20")
-    meeting_handler.create_meeting_session(
-        (datetime.strptime(datetime.now().time().strftime("%H:%M"), "%H:%M") + timedelta(minutes=2)).strftime("%H:%M"),
-        (datetime.strptime(datetime.now().time().strftime("%H:%M"), "%H:%M") + timedelta(minutes=8)).strftime("%H:%M"))
-    print("Start time:"+(datetime.strptime(datetime.now().time().strftime("%H:%M"), "%H:%M") + timedelta(minutes=2)).strftime("%H:%M"))
-    print("End time:"+(datetime.strptime(datetime.now().time().strftime("%H:%M"), "%H:%M") + timedelta(minutes=7)).strftime("%H:%M"))
+    meeting_handler.create_meeting_session("13:10", "13:20")
 
     # Main loop to execute scheduled tasks and handle the meeting lifecycle
     try:
@@ -59,10 +54,6 @@ def main() -> NoReturn:
     # Handle manual interruption (e.g., Ctrl+C)
     except KeyboardInterrupt:
         print("\nProgram terminated by keyboard interrupt.")
-
-        # Closing program after using recognizer. Without this wil be infinity loop and program doesn't end
-        del meeting_handler.recognizer.recorder.realtime_model_type
-        meeting_handler.recognizer.recorder.realtime_model_type = None
 
     except Exception as e:
         print(e)

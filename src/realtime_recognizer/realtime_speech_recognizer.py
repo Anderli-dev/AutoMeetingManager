@@ -3,8 +3,8 @@ import threading
 
 import schedule
 from rapidfuzz import process
+from RealtimeSTT import AudioToTextRecorder
 
-from src.audio_to_text_transcriber.audio_to_text_transcriber import AudioToTextTranscriber
 from src.bot.handlers import send_message_to_user
 from src.utils.escape_special_characters import escape_special_characters
 
@@ -97,12 +97,17 @@ class RealtimeSpeechRecognizer:
 
     def start_recorder(self):
         print("Recording start")
-        self.recorder = AudioToTextTranscriber(**self.recorder_config)
-        while True:
+        self.recorder = AudioToTextRecorder(**self.recorder_config)
+        while self.recorder is not None:
             # Process real-time transcription with the provided processor
             self.recorder.text(self.processor.process_text)
 
     def shutdown(self):
         # Stops the recorder and cleans up resources.
         self.recorder.shutdown()
+        
+        # After “safely” terminating the recorder with the STT recorder tools, still need to manually clean the recorder
+        del self.recorder
+        self.recorder = None
+        
         print("Recording shutdown")
