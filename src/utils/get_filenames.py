@@ -1,10 +1,12 @@
 import os
 from datetime import datetime
 
+from configs import config
+
 
 def get_filenames():
     # Define the path to the folder where OBS recordings are saved
-    folder_path = "C:/Users/lolke/Videos/OBS"
+    folder_path = f"{config.BASE_DIR}/data/audiofiles"
 
     # Get today's date in the format YYYY-MM-DD
     today = datetime.now().date()

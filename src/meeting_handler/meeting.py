@@ -1,40 +1,24 @@
-import time
 from datetime import datetime, timedelta
 
-import pyautogui
 import schedule
 
 from src.conversation.conversation import Conversation
-from src.realtime_recognizer.realtime_speech_recognizer import \
-    RealtimeSpeechRecognizer
+from src.recorders.recorder import Recorder
 
 
 class MeetingHandler:
     def __init__(self):
         # List to store meeting end times
         self.meetings_end_time = []
-        # Initialize the scheduler
+
         self.schedule = schedule.Scheduler()
-        self.recognizer = RealtimeSpeechRecognizer()
-        self.conversation = Conversation(self.recognizer)
+        self.conversation = Conversation()
+        self.recorder = Recorder()
 
     def get_latest_time(self):
         # Returns the latest meeting end time
         return max(self.meetings_end_time)
 
-    def handle_recording(self):
-        # Switch to the OBS window for screen recording
-        pyautogui.hotkey('alt', 'tab')
-        time.sleep(0.5)
-
-        # Move the mouse to the recording start button in OBS and click to start recording
-        pyautogui.moveTo(1650, 825)
-        pyautogui.click(button='left')
-        time.sleep(0.5)
-
-        # Switch back to the previous window
-        pyautogui.hotkey('alt', 'tab')
-        time.sleep(0.5)
 
     def create_meeting_session(self, start_time: str, end_time: str):
         """
@@ -54,7 +38,7 @@ class MeetingHandler:
         )
 
         # Schedule the recording to start at the specified start time
-        self.schedule.every().day.at(start_time).do(self.handle_recording)
+        self.schedule.every().day.at(start_time).do(self.recorder.start_record)
 
         # Schedule joining the conversation 5 minutes after the start time
         self.schedule.every().day.at(
@@ -67,4 +51,4 @@ class MeetingHandler:
         # Schedule stopping the recording 5 minutes after the end time
         self.schedule.every().day.at(
             (datetime.strptime(end_time, "%H:%M") + timedelta(minutes=5)).strftime("%H:%M")
-        ).do(self.handle_recording)
+        ).do(self.recorder.stop_record)

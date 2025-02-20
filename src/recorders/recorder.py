@@ -22,18 +22,27 @@ class Recorder:
     def __init__(self):
         """
         Initializes the recorder with separate threads for audio and video recording.
+        All None because you always need to create new instances to create audio and video. 
+        You can't pause the recording and then resume, because separate files must always be created.
         """
-        self.audio_recorder = AudioRecorder()  # Initialize audio recorder
-        self.video_recorder = VideoRecorder()  # Initialize video recorder
+        self.audio_recorder = None
+        self.video_recorder = None
         
-        # Create separate threads for audio and video recording
-        self.audio_thread = threading.Thread(target=self.audio_recorder.record_audio)
-        self.video_thread = threading.Thread(target=self.video_recorder.record_screen)
+        self.audio_thread = None
+        self.video_thread = None
     
     def start_record(self):
         """
         Starts both audio and video recording in separate threads.
         """
+        self.audio_recorder = AudioRecorder()
+        self.video_recorder = VideoRecorder()
+        
+        # Create separate threads for audio and video recording
+        self.audio_thread = threading.Thread(target=self.audio_recorder.record_audio)
+        self.video_thread = threading.Thread(target=self.video_recorder.record_screen)
+        
+        print("Starts audio and video recording")
         self.audio_thread.start()  # Start audio recording thread
         self.video_thread.start()  # Start video recording thread
     
@@ -49,10 +58,11 @@ class Recorder:
         
         self.audio_thread.join()  # Wait for the audio recording thread to finish
         self.video_thread.join()  # Wait for the video recording thread to finish
+        print("Audio and video recording ends")
         
-        self.create_finale_video()  # Merge audio and video into a single file
+        self._create_finale_video()  # Merge audio and video into a single file
         
-    def create_finale_video(self):
+    def _create_finale_video(self):
         """
         Synchronizes and merges the recorded audio and video into a single MP4 file.
 
@@ -73,5 +83,5 @@ class Recorder:
         final_output_path = f"{config.BASE_DIR}/data/videofiles/{create_filenames()}.mp4"
         final_clip.write_videofile(final_output_path, codec="libx264", audio_codec="aac", fps=30)
         
-        # Delete temporary video file to save space
+        # Delete temporary video file
         self.video_recorder.del_temp_video()

@@ -17,7 +17,7 @@ def audio_transcription(audio_filenames: list):
         print(f"Transcription of {filename}")
 
         # Transcribe the audio file with specified beam size and language set to Ukrainian ("uk")
-        segments, info = model.transcribe(f"{config.BASE_DIR}/data/audiofiles/{filename}.mp3", beam_size=5, language="uk")
+        segments, info = model.transcribe(f"{config.BASE_DIR}/data/audiofiles/{filename}.wav", beam_size=5, language="uk")
 
         # Open a new text file for saving the transcription results
         with open(f"{config.BASE_DIR}/data/transcriptions/{filename} transcription.txt", "w", encoding="utf-8") as file:

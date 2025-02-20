@@ -5,7 +5,6 @@ from typing import NoReturn
 
 from src.meeting_handler.meeting import MeetingHandler
 from src.transcription.transcribe import audio_transcription
-from src.utils.audio_converter import audio_converter
 from src.utils.get_filenames import get_filenames
 
 
@@ -41,10 +40,8 @@ def main() -> NoReturn:
         # Retrieve filenames of video recordings created today
         today_videos_filenames = get_filenames()
 
-        # Convert recorded video files to audio format
-        audio_converter(today_videos_filenames)
-
         # Perform transcription on the audio files
+        # FIX:Sometimes the program closes after transcription, immediately
         audio_transcription(today_videos_filenames)
 
         # Wait for 5 minutes before initiating system shutdown

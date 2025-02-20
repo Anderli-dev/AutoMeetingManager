@@ -3,13 +3,16 @@ import time
 
 import pyautogui
 
+from src.realtime_recognizer.realtime_speech_recognizer import \
+    RealtimeSpeechRecognizer
+
 
 class Conversation:
-    def __init__(self, recognizer):
+    def __init__(self):
         """
             A class for handling conversation join and quit operations, integrated with speech recognition.
         """
-        self.recognizer = recognizer
+        self.recognizer = RealtimeSpeechRecognizer()
         self.recording = None
 
     # Function to handle mouse manipulations for joining a conversation
