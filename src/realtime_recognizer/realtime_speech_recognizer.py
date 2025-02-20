@@ -106,7 +106,7 @@ class RealtimeSpeechRecognizer:
         self.is_recording = True
 
     def start_recorder(self):
-        print("Recording start")
+        print("AudioToTextRecorder start")
         self.recorder = AudioToTextTranscriber(**self.recorder_config)
         while self.is_recording:
             # Process real-time transcription with the provided processor
@@ -119,4 +119,4 @@ class RealtimeSpeechRecognizer:
         # Stoping of Transcriber loop
         self.is_recording = False
         
-        print("Recording shutdown")
+        print("AudioToTextRecorder shutdown")
