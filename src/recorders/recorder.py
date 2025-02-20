@@ -1,3 +1,4 @@
+import multiprocessing
 import threading
 
 from moviepy.editor import AudioFileClip, VideoFileClip
@@ -60,7 +61,8 @@ class Recorder:
         self.video_thread.join()  # Wait for the video recording thread to finish
         print("Audio and video recording ends")
         
-        self._create_finale_video()  # Merge audio and video into a single file
+        creating_video_process = multiprocessing.Process(target=self._create_finale_video())  # Merge audio and video into a single file
+        creating_video_process.start() # Start the merge process separately because it can take some time. Processing is performed on the CPU
         
     def _create_finale_video(self):
         """
