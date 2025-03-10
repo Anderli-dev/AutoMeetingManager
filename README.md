@@ -44,6 +44,9 @@ Set the following environment variables in a `.env` file:
 ```
 BOT_TOKEN=YOUR_TELEGRAM_BOT_TOKEN
 TELEGRAM_USR_ID=YOUR_TELEGRAM_USER_ID
+LANGUAGE=en
+WHISPER_PROMPT="End incomplete sentences with ellipses.\nExamples:\nComplete: The sky is blue.\nIncomplete: When the sky...\nComplete: She walked home.\nIncomplete: Because he...\n"
+SEARCH_WORDS="your, search, words"
 ```
 
 ### 6. Create a Telegram Bot
@@ -65,14 +68,8 @@ Follow Telegram’s official [BotFather guide](https://core.telegram.org/bots#bo
    - Meeting tabs should be arranged from left (first meeting) to right (last meeting).
    - The last tab should be an empty one (no meeting loaded).
    - Example:
+     
    ![How google should look like](helpers/imgs/google.png)
-
-3. **Launch OBS in full-screen mode and ensure it’s ready for recording**
-
-4. **The last two applications in your `Alt+Tab` switcher should be**
-
-   - Browser (for Google Classroom)
-   - OBS
 
 
 ### Running the Program
