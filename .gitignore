@@ -98,3 +98,4 @@ data/videofiles/*
 !data/videofiles/.gitkeep
 
 **/__pycache__/**
+.env

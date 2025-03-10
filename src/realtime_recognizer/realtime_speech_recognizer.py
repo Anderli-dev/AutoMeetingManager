@@ -9,7 +9,7 @@ from src.audio_to_text_transcriber.audio_to_text_transcriber import \
     AudioToTextTranscriber
 from src.bot.handlers import send_message_to_user
 from src.utils.escape_special_characters import escape_special_characters
-
+from configs.config import LANGUAGE, SEARCH_WORDS, WHISPER_PROMPT
 
 class WordSearcher:
     def __init__(self, search_words):
@@ -37,7 +37,9 @@ class WordSearcher:
                             f"You have been mentioned\!\n"
                             f"Word: {search_word} \({word}\)\.\n"
                             f"Similarity: {similarity}\.\n"
-                            f">{sentence}")
+                            f">{sentence}\n"
+                            f"__Audio will be added__\n"
+                            f"__Video will be added__")
                         )
 
 
@@ -66,8 +68,7 @@ class RealtimeSpeechRecognizer:
         A class for managing real-time speech recognition with keyword searching and transcription.
         """
         # List of keywords to search for in the transcription
-        self.search_words = ["іван", "супрун", "танк"]
-        self.searcher = WordSearcher(self.search_words)
+        self.searcher = WordSearcher(SEARCH_WORDS)
         self.processor = SpeechProcessor(self.searcher)
         self.schedule = schedule
         self.recorder_is_running = True
@@ -78,7 +79,7 @@ class RealtimeSpeechRecognizer:
             # TODO: Implement auto-indexing for input devices (RealtimeSTT uses PyAudio)
             'input_device_index': 0,  # Specify the input device index
             'realtime_model_type': 'medium',  # Model type for real-time transcription
-            'language': 'uk',  # Language set to Ukrainian
+            'language': LANGUAGE,  # Language set to Ukrainian
             'silero_sensitivity': 0.05,  # Sensitivity for Silero VAD
             'webrtc_sensitivity': 3,  # Sensitivity for WebRTC
             'post_speech_silence_duration': 0.7,  # Silence duration to consider as the end of speech
@@ -92,14 +93,7 @@ class RealtimeSpeechRecognizer:
             'beam_size': 5,  # Beam size for full transcription
             'beam_size_realtime': 3,  # Beam size for real-time transcription
             'no_log_file': True,  # Disable log file creation
-            'initial_prompt': (  # Instructions for the transcription model
-                "Закінчуйте неповні речення багатокрапками.\n"
-                "Приклади:\n"
-                "Повне: Небо блакитне.\n"
-                "Незавершене: Коли небо...\n"
-                "Завершено: Вона пішла додому.\n"
-                "Не завершено: Тому що він...\n"
-            )
+            'initial_prompt': WHISPER_PROMPT
         }
         # Initialize the recorder
         self.recorder = None

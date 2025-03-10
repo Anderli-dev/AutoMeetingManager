@@ -31,7 +31,7 @@ def main() -> NoReturn:
 
     # Schedule a sample meeting session (start and end times dynamically adjusted for testing)
     # TODO: Add functionality to manage multi-day scheduling for meetings.
-    meeting_handler.create_meeting_session("13:10", "13:20")
+    meeting_handler.create_meeting_session("09:36", "09:50")
 
     # Main loop to execute scheduled tasks and handle the meeting lifecycle
     try:
